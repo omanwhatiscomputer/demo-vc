@@ -56,7 +56,7 @@ const DragDrop = (props) => {
             <source src={url} type={file.type} />
             </video>}
         <br />
-        {file && <button style={{width: "100px", borderRadius: 20}} onClick={() => {setFile(null); setResult(null);}}>Clear file</button>}
+        {file && result && <button style={{width: "100px", borderRadius: 20}} onClick={() => {setFile(null); setResult(null);}}>Clear file</button>}
         <br />
         
       </div>
