@@ -2,7 +2,7 @@
 
 ## bloat md
 
-<details><summary>CLICK ME</summary>
+<details><summary>click to expand</summary>
 <p>
 
 ### `npm start`
