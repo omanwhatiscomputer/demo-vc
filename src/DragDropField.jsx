@@ -35,7 +35,8 @@ const DragDrop = (props) => {
     const headers = {
       "Content-Type": "multipart/form-data",
     };
-    axios.post("http://103.152.213.168:3000/api/vc", payload, {headers: headers})
+    const url = "http://localhost:3000/api/vc";
+    axios.post(url, payload, {headers: headers})
     .then(res => {
       setResult(res.data.fileInfo);
       console.log(result);
