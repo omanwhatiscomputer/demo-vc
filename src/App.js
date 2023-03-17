@@ -57,12 +57,15 @@ const App = () => {
                     size="sm"
                     aria-label="Default select example"
                 >
-                    {modelList &&
+                    {modelList ? (
                         modelList.map((item) => (
                             <option key={item} value={item}>
                                 {item}
                             </option>
-                        ))}
+                        ))
+                    ) : (
+                        <option>fetching model list...</option>
+                    )}
                 </Form.Select>
             </div>
         </div>
