@@ -15,7 +15,12 @@ const App = () => {
     useEffect(() => {
         const url = "http://vcdemo.loca.lt/api/vc";
         // const url = "http://localhost:3000/api/vc";
-        axios.get(url).then((res) => {
+        const config = {
+            headers: {
+                "Bypass-Tunnel-Reminder": 1,
+            },
+        };
+        axios.get(url, config).then((res) => {
             setList(res.data.response);
             setModel(res.data.response[0]);
             console.log("first");
