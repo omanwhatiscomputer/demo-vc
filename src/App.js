@@ -13,8 +13,8 @@ const App = () => {
     const [currModel, setModel] = useState(null);
 
     useEffect(() => {
-        // const url = "http://103.152.213.168:3000/api/vc";
-        const url = "http://localhost:3000/api/vc";
+        const url = "http://vcdemo.loca.lt/api/vc";
+        // const url = "http://localhost:3000/api/vc";
         axios.get(url).then((res) => {
             setList(res.data.response);
             setModel(res.data.response[0]);
