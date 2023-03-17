@@ -7,7 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: rgb(232,232,232);
-  background: linear-gradient(180deg, rgba(232,232,232,1) 0%, rgba(151,170,176,1) 90%, rgba(73,83,85,1) 100%);
+  /* background: linear-gradient(180deg, rgba(232,232,232,1) 0%, rgba(151,170,176,1) 90%, rgba(73,83,85,1) 100%); */
   /* text-shadow: 1px 1px gray; */
   height: 100vh;
 }
