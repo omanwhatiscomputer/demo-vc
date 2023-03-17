@@ -17,14 +17,29 @@ code {
     monospace;
 }
 
-.grid-container{
-  display: grid;
-  grid-template-columns: auto auto;
-  margin-top: 0 auto;
-  grid-auto-rows: 400;
-  column-gap: 25px;
-  justify-items: center;
+@media only screen and (min-width: 500px) {
+  .grid-container{
+    display: grid;
+    grid-template-columns: auto;
+    margin-top: 0 auto;
+    grid-auto-rows: 400;
+    column-gap: 25px;
+    justify-items: center;
+    margin-bottom: 15px;
+  }
 }
+@media only screen and (min-width: 700px) {
+  .grid-container{
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-top: 0 auto;
+    grid-auto-rows: 400;
+    column-gap: 25px;
+    justify-items: center;
+  }
+}
+
+
 
 .grid-items{
   display: flex;
