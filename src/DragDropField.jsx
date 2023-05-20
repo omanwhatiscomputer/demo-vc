@@ -34,7 +34,7 @@ const DragDrop = (props) => {
       "Access-Control-Allow-Origin": "*",
     };
 
-    const url = "https://drrai-vc-demo.loca.lt/api/vc/video_file";
+    const url = "http://drrai-vc-demo.loca.lt/api/vc/video_file";
     // const url = "http://localhost:3002/api/vc/video_file";
     
     axios.post(url, payload, {headers: headers})
