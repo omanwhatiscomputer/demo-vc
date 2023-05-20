@@ -15,13 +15,14 @@ const VideoStream = (props) => {
     const [q, setQ] = useState([]);
     const [cacheModel, setCacheModel] = useState(true);
     const [result, setResult] = useState(null);
+    const [backCameraMode, setBackCameraMode] = useState(false);
 
     
     const videoConstraints = {
         width: 480,
         height: 480,
         // facingMode: "user",
-        facingMode: { exact: "environment" },
+        // facingMode: { exact: "environment" },
     };
     const webcamRef = useRef(null);
     const abortRef = React.useRef(false);
@@ -150,6 +151,9 @@ const VideoStream = (props) => {
     const handleCachedModel = event => {
         setCacheModel(!cacheModel);
     }
+    const handleBackCameraMode = event => {
+        setBackCameraMode(!backCameraMode);
+    }
 
     return ( 
     <div className="grid-containerV">
@@ -160,7 +164,7 @@ const VideoStream = (props) => {
             height={480}
             screenshotFormat="image/jpeg"
             width={480}
-            videoConstraints={videoConstraints}
+            videoConstraints={{...videoConstraints, facingMode:  backCameraMode ? { exact: "environment" } : "user" }}
         />
         <div className="grid-itemV">
             <div>
@@ -180,6 +184,8 @@ const VideoStream = (props) => {
                     <input disabled={inferenceMode ? true : false} type={"range"} name={"samplingInterval"} min={"10"} max={"250"} step={"5"} value={samplingInterval} onChange={handleSamplingIntervalRange }/>
                 </div>
             </div>
+
+            
 
             <Form.Select
                 className="selectV"
@@ -213,6 +219,16 @@ const VideoStream = (props) => {
                 onChange={(event)=> {handleCachedModel(event)}}
                 disabled={inferenceMode ? true : false}
             />
+
+            <Form.Check 
+                checked={backCameraMode}
+                type="switch"
+                id="switch2"
+                label="Back Camera"
+                onChange={(event)=> {handleBackCameraMode(event)}}
+                disabled={inferenceMode ? true : false}
+            />
+            
 
             <Button  disabled={inferenceMode ? true : false} variant="primary" onClick={(event)=> {handleInferenceMode(event); abortRef.current = false; }}>"Detect"</Button>
             <Button disabled={inferenceMode ? false : true} variant="danger" onClick={(event)=> {handleInferenceMode(event); abortRef.current = true; }}>"Terminate"</Button>
