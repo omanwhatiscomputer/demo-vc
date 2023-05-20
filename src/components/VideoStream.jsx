@@ -96,6 +96,7 @@ const VideoStream = (props) => {
                     "Content-Type": "multipart/form-data",
                     "Bypass-Tunnel-Reminder": 1,
                     "Access-Control-Allow-Origin": "true",
+                    "Access-Control-Allow-Headers": "Content-Type, Request-ID, Last-Capture-Sync",
                     "Request-ID": REQ_ID,
                     "Last-Capture-Sync": new Date().toLocaleString(),
                 };
