@@ -35,10 +35,11 @@ const DragDrop = (props) => {
     const headers = {
       "Content-Type": "multipart/form-data",
       "Bypass-Tunnel-Reminder": 1,
+      "Access-Control-Allow-Origin": "true",
     };
 
-    const url = "http://vcdemo.loca.lt/api/vc";
-    // const url = "http://localhost:3000/api/vc";
+    const url = "https://drrai-vc-demo.loca.lt/api/vc/video_file";
+    // const url = "http://localhost:3002/api/vc/video_file";
     
     axios.post(url, payload, {headers: headers})
     .then(res => {

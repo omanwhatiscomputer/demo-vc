@@ -34,7 +34,6 @@ code {
     grid-template-columns: auto auto;
     margin-top: 0 auto;
     grid-auto-rows: 400;
-    column-gap: 25px;
     justify-items: center;
   }
 }
@@ -44,8 +43,6 @@ code {
 .grid-items{
   display: flex;
   text-align: center;
-  /* align-items: center;
-  align-content: center; */
   align-items: center;
   justify-content: center;
   
@@ -77,3 +74,7 @@ code {
   border-radius: 15px;
 }
 
+.navbar a {
+  text-decoration: none;
+  color: antiquewhite;
+}

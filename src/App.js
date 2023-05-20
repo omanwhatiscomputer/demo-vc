@@ -2,28 +2,32 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import React, { useEffect, useState } from "react";
-import Form from "react-bootstrap/Form";
-
-import DragDrop from "./DragDropField";
+import { Mutex } from "async-mutex";
 import axios from "axios";
 
+import VideoFile from "./components/VideoFile";
+import VideoStream from "./components/VideoStream";
+import LandingPage from "./components/LandingPage";
+
+import { Outlet, Link, Routes, Route } from "react-router-dom";
+
 const App = () => {
-    // const {file, result} = useContext(DemoContext);
     const [modelList, setList] = useState(null);
     const [currModel, setModel] = useState(null);
+    const mutex = new Mutex();
 
     useEffect(() => {
-        const url = "http://vcdemo.loca.lt/api/vc";
-        // const url = "http://localhost:3000/api/vc";
+        const url = `https://drrai-vc-demo.loca.lt/api/vc/`;
+        // const url = "http://localhost:3002/api/vc/";
         const config = {
             headers: {
                 "Bypass-Tunnel-Reminder": 1,
+                "Access-Control-Allow-Origin": "true",
             },
         };
         axios.get(url, config).then((res) => {
             setList(res.data.response);
             setModel(res.data.response[0]);
-            console.log("first");
         });
     }, []);
 
@@ -35,44 +39,51 @@ const App = () => {
         <div className="App">
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href="#home">VC-Demo</Navbar.Brand>
-                    <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
+                    <Navbar.Brand>
+                        <Link to={"/"}>VC Demo</Link>
+                    </Navbar.Brand>
+                    <Nav className="me-auto" as="ul">
+                        {/* <Nav.Link href="/video_file">VideoFile</Nav.Link>
+                        <Nav.Link href="/video_stream">VideoStream</Nav.Link> */}
+
+                        <Nav.Item as="li">
+                            <Link to={"/video_file"}>VideoFile</Link>
+                        </Nav.Item>
+                        <Nav.Item as="li">
+                            <Link to={"/video_stream"}>VideoStream</Link>
+                        </Nav.Item>
                     </Nav>
                 </Container>
             </Navbar>
 
-            <DragDrop currModel={currModel} />
+            <Outlet />
 
-            <div
-                style={{
-                    alignItems: "center",
-                    width: "100%",
-                    textAlign: "center",
-                }}
-            >
-                <Form.Select
-                    className="select"
-                    onChange={(event) => handleSelectChange(event)}
-                    style={{
-                        width: "40%",
-                        margin: "0 auto",
-                        backgroundColor: "skyblue",
-                    }}
-                    size="sm"
-                    aria-label="Default select example"
-                >
-                    {modelList ? (
-                        modelList.map((item) => (
-                            <option key={item} value={item}>
-                                {item}
-                            </option>
-                        ))
-                    ) : (
-                        <option>fetching model list...</option>
-                    )}
-                </Form.Select>
-            </div>
+            <Routes>
+                <Route path="/">
+                    <Route index element={<LandingPage />} />
+                    <Route
+                        path="video_file"
+                        element={
+                            <VideoFile
+                                handleSelectChange={handleSelectChange}
+                                currModel={currModel}
+                                modelList={modelList}
+                            />
+                        }
+                    />
+                    <Route
+                        path="video_stream"
+                        element={
+                            <VideoStream
+                                currModel={currModel}
+                                modelList={modelList}
+                                handleSelectChange={handleSelectChange}
+                                mutex={mutex}
+                            />
+                        }
+                    />
+                </Route>
+            </Routes>
         </div>
     );
 };

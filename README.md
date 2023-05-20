@@ -1,5 +1,8 @@
 # drr-ai research demo frontend
-
+## url locations:
+- App.js -> x1
+- VideoStream.jsx -> x2
+- DragDropField.jsx -> x1
 ## bloat md
 
 <details><summary>click to expand</summary>
