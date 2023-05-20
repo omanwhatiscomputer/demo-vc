@@ -107,10 +107,10 @@ const VideoStream = (props) => {
                 let url;
                 if(cacheModel){
                     // url = "http://localhost:3002/api/vc/video_stream_cached";
-                    url = "http://drrai-vc-demo.loca.lt/api/vc/video_stream_cached";
+                    url = "https://drrai-vc-demo.loca.lt/api/vc/video_stream_cached";
                 }else{
                     // url = "http://localhost:3002/api/vc/video_stream";
-                    url = "http://drrai-vc-demo.loca.lt/api/vc/video_stream";
+                    url = "https://drrai-vc-demo.loca.lt/api/vc/video_stream";
                 }
 
                 const config = { headers: headers, timeout: 90000 };
