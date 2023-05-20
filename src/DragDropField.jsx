@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import axios from "axios";
 import Dropbox from "./Dropbox";
-// import App from "./App";
-// import Form from "react-bootstrap/Form";
+
 
 const fileTypes = ["MP4"];
 
-// export const DemoContext = createContext(null);
-// /* <DemoContext.Provider value={{result: result, file: file}}>
-//   <App />
-// </DemoContext.Provider> */
+
 
 const DragDrop = (props) => {
   const [file, setFile] = useState(null);
@@ -35,7 +31,7 @@ const DragDrop = (props) => {
     const headers = {
       "Content-Type": "multipart/form-data",
       "Bypass-Tunnel-Reminder": 1,
-      "Access-Control-Allow-Origin": "true",
+      "Access-Control-Allow-Origin": "*",
     };
 
     const url = "https://drrai-vc-demo.loca.lt/api/vc/video_file";
@@ -45,7 +41,6 @@ const DragDrop = (props) => {
     .then(res => {
       setResult(res.data.fileInfo);
       console.log(result);
-      // return res.data.fileInfo;
     })
     .catch(err => console.log(err.response.data));
 

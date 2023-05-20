@@ -20,7 +20,8 @@ const VideoStream = (props) => {
     const videoConstraints = {
         width: 480,
         height: 480,
-        facingMode: "user"
+        // facingMode: "user",
+        facingMode: { exact: "environment" },
     };
     const webcamRef = useRef(null);
     const abortRef = React.useRef(false);
@@ -96,7 +97,7 @@ const VideoStream = (props) => {
                     "Content-Type": "multipart/form-data",
                     "Bypass-Tunnel-Reminder": 1,
                     "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Headers": "Content-Type,Request-ID,Last-Capture-Sync",
+                    "Access-Control-Allow-Headers": "content-type,request-id,last-capture-sync",
                     "Request-ID": REQ_ID,
                     "Last-Capture-Sync": new Date().toLocaleString(),
                 };
