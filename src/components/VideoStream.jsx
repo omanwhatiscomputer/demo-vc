@@ -157,16 +157,17 @@ const VideoStream = (props) => {
 
     return ( 
     <div className="grid-containerV">
-        <Webcam
-            className="camera-viewport grid-itemV"
-            ref={webcamRef}
-            audio={false}
-            height={480}
-            screenshotFormat="image/jpeg"
-            width={480}
-            videoConstraints={{...videoConstraints, facingMode:  backCameraMode ? { exact: "environment" } : "user" }}
-        />
-        <div className="grid-itemV">
+        <div className="camera-viewport grid-itemV">
+            <Webcam
+                ref={webcamRef}
+                audio={false}
+                height={480}
+                screenshotFormat="image/jpeg"
+                width={480}
+                videoConstraints={{...videoConstraints, facingMode:  backCameraMode ? { exact: "environment" } : "user" }}
+            />
+        </div>
+        <div className="grid-itemV parameters">
             <div>
                 <legend>Parameters:</legend>
                 <div>
@@ -230,10 +231,12 @@ const VideoStream = (props) => {
             />
             
 
-            <Button  disabled={inferenceMode ? true : false} variant="primary" onClick={(event)=> {handleInferenceMode(event); abortRef.current = false; }}>"Detect"</Button>
-            <Button disabled={inferenceMode ? false : true} variant="danger" onClick={(event)=> {handleInferenceMode(event); abortRef.current = true; }}>"Terminate"</Button>
+            <Button  disabled={inferenceMode ? true : false} variant="primary" onClick={(event)=> {handleInferenceMode(event); abortRef.current = false; }}>Detect</Button>
+            <Button disabled={inferenceMode ? false : true} variant="danger" onClick={(event)=> {handleInferenceMode(event); abortRef.current = true; }}>Terminate</Button>
         </div>
-        {result && (<div> Result: ({result.fileInfo.split("===")[0]}) {result.fileInfo.split("===")[1]}  & Last frame captured: {result.lastCaptured}</div>)}
+        <div className="grid-itemV prediction">
+            {result && (<div> Result: ({result.fileInfo.split("===")[0]}) {result.fileInfo.split("===")[1]}  & Last frame captured: {result.lastCaptured}</div>)}
+        </div>
     </div>
     );
 }

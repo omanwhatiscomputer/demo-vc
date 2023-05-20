@@ -46,10 +46,10 @@ const App = () => {
                         {/* <Nav.Link href="/video_file">VideoFile</Nav.Link>
                         <Nav.Link href="/video_stream">VideoStream</Nav.Link> */}
 
-                        <Nav.Item as="li">
+                        <Nav.Item as="li" className="nav-menu">
                             <Link to={"/video_file"}>VideoFile</Link>
                         </Nav.Item>
-                        <Nav.Item as="li">
+                        <Nav.Item as="li" className="nav-menu">
                             <Link to={"/video_stream"}>VideoStream</Link>
                         </Nav.Item>
                     </Nav>
