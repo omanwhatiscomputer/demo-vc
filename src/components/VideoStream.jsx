@@ -113,7 +113,7 @@ const VideoStream = (props) => {
                     url = "https://drrai-vc-demo.loca.lt/api/vc/video_stream";
                 }
 
-                const config = { headers: headers, timeout: 290000 };
+                const config = { headers: headers, timeout: 500000 };
 
                 await axios.post(url, payload, config)
                 .then(res => {
